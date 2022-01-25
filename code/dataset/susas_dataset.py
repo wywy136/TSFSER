@@ -53,7 +53,7 @@ class SusasCollator(object):
     def __call__(self, batch: dict) -> dict:
         teo = np.array([each["teo"] for each in batch], dtype=np.float32)
         gemaps = np.array([each["gemaps"] for each in batch], dtype=np.float32)
-        label = np.array([each["label"] for each in batch], dtype=np.int32)
+        label = np.array([each["label"] for each in batch], dtype=np.long)
         
         teo = torch.from_numpy(teo)
         gemaps = torch.from_numpy(gemaps)
