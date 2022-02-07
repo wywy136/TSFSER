@@ -11,7 +11,7 @@ from feature_extractor.gemaps import GemapsFeatureExtractorAverage
 
 
 class SusasDataset(Dataset):
-    def __init__(self, args):
+    def __init__(self, args, split):
         Dataset.__init__(self)
         self.args = args
         self.csv_data = open(self.args.susas_path, 'r')
@@ -22,7 +22,14 @@ class SusasDataset(Dataset):
         for row in csv_reader:
             self.ori_data.append(row)
         # self.ori_data[0]: ['0', '/project/graziul/data/corpora/susas/speech/actual/roller/f1/free_oov_all/all1.sph', 'High', 'Negative', 'all']
-     
+        
+        data_size = len(self.ori_data)
+        train_size = int(self.args.train_test_split * data_size)
+        if split == "train":
+            self.ori_data = self.ori_data[0:train_size]
+        else:
+            self.ori_data = self.ori_data[train_size:]
+        
         self.teo_extractor = TeoFeatureExtractorAverage(self.args)
         self.gemaps_extractor = GemapsFeatureExtractorAverage(self.args)
         
@@ -37,7 +44,8 @@ class SusasDataset(Dataset):
         text = piece[4]
         
         # (16,)
-        teo_feature: np.ndarray = self.teo_extractor(piece[1])
+        # teo_feature: np.ndarray = self.teo_extractor(piece[1])
+        teo_feature: np.ndarray = np.zeros(1)
         # (25,)
         gemaps_feature: np.ndarray = self.gemaps_extractor(piece[1])
         label = self.args.label_map[arousal + valence]
@@ -50,6 +58,9 @@ class SusasDataset(Dataset):
 
     
 class SusasCollator(object):
+    def __init__(self, using_cuda):
+        self.using_cuda = using_cuda
+
     def __call__(self, batch: dict) -> dict:
         teo = np.array([each["teo"] for each in batch], dtype=np.float32)
         gemaps = np.array([each["gemaps"] for each in batch], dtype=np.float32)
@@ -58,6 +69,11 @@ class SusasCollator(object):
         teo = torch.from_numpy(teo)
         gemaps = torch.from_numpy(gemaps)
         label = torch.from_numpy(label)
+
+        if self.using_cuda:
+            teo = teo.cuda()
+            gemaps = gemaps.cuda()
+            label = label.cuda()
         
         return {
             "teo": teo,
