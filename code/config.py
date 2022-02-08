@@ -2,13 +2,13 @@ class Argument:
     
     # Setup
     cuda: bool = True
-    save_path: str = '/project/graziul/ra/ywang27/saved_models/no_text_no_merge_no_teo.pth'
+    save_path: str = '/project/graziul/ra/ywang27/saved_models/no_text_no_merge_no_teo_1.pth'
     load_path: str = '/project/graziul/ra/ywang27/saved_models/no_text_no_merge_no_teo.pth'
     bpc_output_path: str = './data/BPC_labels.csv'
     load_pretrained: bool = True
-    train: bool = False
+    train: bool = True
     evaluate: bool = False
-    predict: bool = True
+    predict: bool = False
         
     # Feature
     delta_for_teo: int = 0.2
@@ -21,8 +21,8 @@ class Argument:
     
     # Label
     label_map: dict = {
-        "HighPositive": 0,
-        "LowPositive": 1,
+        "HighPositive": 1,
+        "LowPositive": 0,
         "HighNegative": 2
     }
     label_size = 3
