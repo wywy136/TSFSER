@@ -19,21 +19,22 @@ class Trainer():
             self.device = torch.device('cuda')
         else:
             self.device = torch.device('cpu')
+        print(torch.cuda.is_available())
         print(f'Using device: {self.device}')
         
         self.bpc_dataset_train = BpcDataset(self.args, "train")
         self.bpc_dataset_test = BpcDataset(self.args, "test")
-        self.bpc_collator = BpcCollator(self.using_cuda)
+        self.bpc_collator = BpcCollator()
         
         self.susas_dataset_train = SusasDataset(self.args, "train")
         self.susas_dataset_test = SusasDataset(self.args, "test")
-        self.susas_collator = SusasCollator(self.using_cuda)
+        self.susas_collator = SusasCollator()
         
         self.model = FNN(self.args)
         if self.args.load_pretrained:
             self.model.load_state_dict(torch.load(self.args.load_path))
             print(f"Pretrained model loaded from: {self.args.load_path}")
-        self.model.to(self.device)
+        self.model = self.model.to(self.device)
 
         self.predictor = Predictor(self.args)
         
@@ -73,6 +74,14 @@ class Trainer():
                 self.model.train()
                 for index_s, batch_s in enumerate(self.susas_dataloader_train):
                     for index_b, batch_b in enumerate(self.bpc_dataloader_train):
+
+                        for key, tensor in batch_s.items():
+                            if type(tensor) == torch.Tensor:
+                                batch_s[key] = tensor.to(self.device)
+
+                        for key, tensor in batch_b.items():
+                            if type(tensor) == torch.Tensor:
+                                batch_b[key] = tensor.to(self.device)
                             
                         loss, cls_loss, mmd_loss = self.model(batch_s, batch_b, "train")
                         # print(loss, cls_loss, mmd_loss)
@@ -81,11 +90,11 @@ class Trainer():
                             self.optimizer.step()
                             self.optimizer.zero_grad()
 
-                        if index_b % 100 == 0:
+                        if index_b % 100 == 0 and index_s % 100 == 0:
                             print(f'[{index_s}/{self.susas_dataloader_train_size}][{index_b}/{self.bpc_dataloader_train_size}] Loss: {loss.item()}')
 
-                    torch.save(self.model.state_dict(), self.args.save_path)
-                    print(f"Model saved at: {self.args.save_path}")
+                torch.save(self.model.state_dict(), self.args.save_path)
+                print(f"Model saved at: {self.args.save_path}")
 
             if self.args.predict:
                 # Predicting

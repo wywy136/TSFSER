@@ -15,5 +15,5 @@ srun --account=pi-graziul \
      --ntasks=1 \
      --gpus-per-task=1 \
      --mem-per-cpu=24G \
-     --time=01:00:00 \
+     --time=02:00:00 \
      python -u main.py
