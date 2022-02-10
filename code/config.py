@@ -7,18 +7,19 @@ class Argument:
     cuda: bool = True
     save_path: str = '/project/graziul/ra/ywang27/saved_models/no_text_no_merge_no_teo.pth'
     load_path: str = '/project/graziul/ra/ywang27/saved_models/no_text_no_merge_no_teo.pth'
-    bpc_output_path: str = './data/BPC_labels.csv'
     load_pretrained: bool = False
     train: bool = True
     evaluate: bool = False
-    predict: bool = False
+    predict: bool = True
         
     # Feature
     delta_for_teo: int = 0.2
     
     # Dataset
-    bpc_path: str = "./data/BPC_path2.csv"
+    bpc_path: str = "./data/BPC_path2.csv"  # paths
+    bpc_output_path: str = './data/BPC_labels.csv'  # paths with labels
     bpc_feature_path: str = "./data/BPC_feature.json"
+
     susas_path: str = "./data/susas_path.csv"
     susas_feature_path: str = "./data/susas_feature.json"
     train_test_split = 1

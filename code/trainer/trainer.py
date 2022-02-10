@@ -34,6 +34,8 @@ class Trainer():
         if self.args.load_pretrained:
             self.model.load_state_dict(torch.load(self.args.load_path))
             print(f"Pretrained model loaded from: {self.args.load_path}")
+        else:
+            print("New model initialized.")
         self.model = self.model.to(self.device)
 
         self.predictor = Predictor(self.args)
@@ -90,25 +92,26 @@ class Trainer():
                             self.optimizer.step()
                             self.optimizer.zero_grad()
 
-                        if index_b % 100 == 0 and index_s % 100 == 0:
+                        if index_b % 10 == 0 and index_s % 100 == 0:
                             print(f'[{index_s}/{self.susas_dataloader_train_size}][{index_b}/{self.bpc_dataloader_train_size}] Loss: {loss.item()}')
 
                 torch.save(self.model.state_dict(), self.args.save_path)
                 print(f"Model saved at: {self.args.save_path}")
 
-            if self.args.predict:
-                # Predicting
-                self.model.eval()
-                bpc_dataloader_prd = DataLoader(
-                    dataset=self.bpc_dataset_train,
-                    batch_size=self.args.batch_size,
-                    num_workers=self.args.num_workers,
-                    collate_fn=self.bpc_collator,
-                    # pin_memory=True if self.using_cuda else False,
-                    shuffle=False
-                )
-                self.predictor(self.model, bpc_dataloader_prd)
-                print(f"Predition finished.")
+        if self.args.predict:
+            # Predicting
+            print("Predicting labels for BPC.")
+            self.model.eval()
+            bpc_dataloader_prd = DataLoader(
+                dataset=self.bpc_dataset_train,
+                batch_size=self.args.batch_size,
+                num_workers=self.args.num_workers,
+                collate_fn=self.bpc_collator,
+                # pin_memory=True if self.using_cuda else False,
+                shuffle=False
+            )
+            self.predictor(self.model, bpc_dataloader_prd)
+            print(f"Predition completed. Labels in {self.args.bpc_output_path}.")
             
             # Evaluating
             # self.bpc_dataloader_test = DataLoader(

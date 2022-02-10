@@ -3,7 +3,6 @@ import sys
 sys.path.append('..')
 import json
 
-from feature_extractor.teo import TeoFeatureExtractorAverage
 from feature_extractor.gemaps import GemapsFeatureExtractorAverage
 
 
@@ -28,25 +27,27 @@ class GemapsWriter:
 
 
     def __call__(self):
-        json_data = []
-        for i, piece in enumerate(self.susas_data):
-            if i % 100 == 0:
-                print(f"{i}/{len(self.susas_data)}")
-            dic = {
-                "path": piece[1],
-                "arousal": piece[2],
-                "valence": piece[3],
-                "gemaps": self.gemaps(piece[1]).tolist()
-            }
-            json_data.append(dic)
+        # json_data = []
+        # for i, piece in enumerate(self.susas_data):
+        #     if i % 100 == 0:
+        #         print(f"{i}/{len(self.susas_data)}")
+        #     dic = {
+        #         "path": piece[1],
+        #         "arousal": piece[2],
+        #         "valence": piece[3],
+        #         "gemaps": self.gemaps(piece[1]).tolist()
+        #     }
+        #     json_data.append(dic)
         
-        json_str = json.dumps(json_data)
-        with open(self.args.susas_feature_path, 'w') as f:
-            f.write(json_str)
+        # json_str = json.dumps(json_data)
+        # with open(self.args.susas_feature_path, 'w') as f:
+        #     f.write(json_str)
         
         json_data = []
+        print("Generating GeMAPS feature for BPC. This will take quite a period of time.")
         for i, piece in enumerate(self.bpc_data):
-            print(f"{i}/{len(self.bpc_data)}")
+            if i % 10 == 0:
+                print(f"Finished: {i}/{len(self.bpc_data)}")
             dic = {
                 "path": piece[1],
                 "gemaps": self.gemaps(piece[1]).tolist()
@@ -56,3 +57,5 @@ class GemapsWriter:
         json_str = json.dumps(json_data)
         with open(self.args.bpc_feature_path, 'w') as f:
             f.write(json_str)
+        f.close()
+        print(f"GeMAPS generation completed! Features in {self.args.bpc_feature_path}.")
