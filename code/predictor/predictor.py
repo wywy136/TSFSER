@@ -15,6 +15,11 @@ class Predictor:
 
         size = len(bpc_dataloader)
         for index_b, batch_b in enumerate(bpc_dataloader):
+
+            for key, tensor in batch_b.items():
+                if type(tensor) == torch.Tensor:
+                    batch_b[key] = tensor.to(self.device)
+
             if index_b % 100 == 0:
                 print(f"{index_b}/{size}")
 
@@ -28,8 +33,8 @@ class Predictor:
             for i in range(len(probs)):
                 output.append([
                     batch_b["path"][i],
-                    batch_b["start"][i],
-                    batch_b["end"][i],
+                    # batch_b["start"][i],
+                    # batch_b["end"][i],
                     labels[i],
                     probs[i][0],
                     probs[i][1],
