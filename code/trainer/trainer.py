@@ -110,7 +110,7 @@ class Trainer():
                 # pin_memory=True if self.using_cuda else False,
                 shuffle=False
             )
-            self.predictor(self.model, bpc_dataloader_prd)
+            self.predictor(self.model, bpc_dataloader_prd, self.device)
             print(f"Predition completed. Labels in {self.args.bpc_output_path}.")
             
             # Evaluating

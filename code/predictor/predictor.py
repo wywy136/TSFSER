@@ -9,7 +9,7 @@ class Predictor:
         self.write_path = self.args.bpc_output_path
         self.softmax = Softmax(dim=1)
 
-    def __call__(self, model, bpc_dataloader):
+    def __call__(self, model, bpc_dataloader, device):
         print(f"Predicting labels for BPC")
         output = []
 
@@ -18,7 +18,7 @@ class Predictor:
 
             for key, tensor in batch_b.items():
                 if type(tensor) == torch.Tensor:
-                    batch_b[key] = tensor.to(self.device)
+                    batch_b[key] = tensor.to(device)
 
             if index_b % 100 == 0:
                 print(f"{index_b}/{size}")
