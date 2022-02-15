@@ -59,7 +59,7 @@ class BpcDataset(Dataset):
         teo_feature: np.ndarray = np.zeros(1)
 #         if teo_feature.shape != (16,):
 #             print(teo_feature)
-        gemaps_feature: np.ndarray = np.zeros(25) # np.array(piece["gemaps"])
+        gemaps_feature: np.ndarray = np.array(piece["gemaps"]) # np.array(piece["gemaps"])
         
         return {
             "teo": teo_feature,
