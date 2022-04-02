@@ -3,6 +3,7 @@ import csv
 import torch
 from torch.nn import Softmax
 
+
 class Predictor:
     def __init__(self, args):
         self.args = args
@@ -45,7 +46,7 @@ class Predictor:
         with open(self.write_path, 'w') as csvfile:
             writer = csv.writer(csvfile)
 
-            writer.writerow(["path", "start", "end", "label", "0", "1", "2"])
+            writer.writerow(["path", "label", "0", "1", "2"])
             writer.writerows(output)
         
         csvfile.close()

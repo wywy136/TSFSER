@@ -1,0 +1,112 @@
+Using device: cuda
+New model initialized.
+Training for epoch 0
+[0/251]Loss: 28.899255752563477
+[100/251]Loss: 18.50627326965332
+[200/251]Loss: 6.130674362182617
+Evaluating for SUSAS.
+0/51
+Overall Accuracy: 0.341645885286783
+Evaluation completed.
+Model saved at: /project/graziul/ra/ywang27/saved_models/susas_cnn.pth
+Training for epoch 1
+[0/251]Loss: 8.044590950012207
+[100/251]Loss: 4.466032028198242
+[200/251]Loss: 5.547356128692627
+Evaluating for SUSAS.
+0/51
+Overall Accuracy: 0.26807980049875313
+Evaluation completed.
+Training for epoch 2
+[0/251]Loss: 3.3534162044525146
+[100/251]Loss: 2.6310665607452393
+[200/251]Loss: 2.4774346351623535
+Evaluating for SUSAS.
+0/51
+Overall Accuracy: 0.4488778054862843
+Evaluation completed.
+Model saved at: /project/graziul/ra/ywang27/saved_models/susas_cnn.pth
+Training for epoch 3
+[0/251]Loss: 3.1016950607299805
+[100/251]Loss: 2.5394864082336426
+[200/251]Loss: 1.914977788925171
+Evaluating for SUSAS.
+0/51
+Overall Accuracy: 0.44389027431421446
+Evaluation completed.
+Training for epoch 4
+[0/251]Loss: 1.983902931213379
+[100/251]Loss: 1.9833801984786987
+[200/251]Loss: 1.5145809650421143
+Evaluating for SUSAS.
+0/51
+Overall Accuracy: 0.45012468827930174
+Evaluation completed.
+Model saved at: /project/graziul/ra/ywang27/saved_models/susas_cnn.pth
+Training for epoch 5
+[0/251]Loss: 1.241452932357788
+[100/251]Loss: 1.9226762056350708
+[200/251]Loss: 2.410139560699463
+Evaluating for SUSAS.
+0/51
+Overall Accuracy: 0.39027431421446385
+Evaluation completed.
+Training for epoch 6
+[0/251]Loss: 1.4298954010009766
+[100/251]Loss: 2.90679931640625
+[200/251]Loss: 1.3821263313293457
+Evaluating for SUSAS.
+0/51
+Overall Accuracy: 0.3778054862842893
+Evaluation completed.
+Training for epoch 7
+[0/251]Loss: 1.8166813850402832
+[100/251]Loss: 1.113945722579956
+[200/251]Loss: 1.867959976196289
+Evaluating for SUSAS.
+0/51
+Overall Accuracy: 0.385286783042394
+Evaluation completed.
+Training for epoch 8
+[0/251]Loss: 2.837150812149048
+[100/251]Loss: 1.2514357566833496
+[200/251]Loss: 1.8593761920928955
+Evaluating for SUSAS.
+0/51
+Overall Accuracy: 0.3940149625935162
+Evaluation completed.
+Training for epoch 9
+[0/251]Loss: 2.7644989490509033
+[100/251]Loss: 1.5163791179656982
+[200/251]Loss: 2.0700249671936035
+Evaluating for SUSAS.
+0/51
+Overall Accuracy: 0.4476309226932668
+Evaluation completed.
+Training for epoch 10
+[0/251]Loss: 2.6236093044281006
+[100/251]Loss: 1.19144606590271
+[200/251]Loss: 2.1283810138702393
+Evaluating for SUSAS.
+0/51
+Overall Accuracy: 0.4513715710723192
+Evaluation completed.
+Model saved at: /project/graziul/ra/ywang27/saved_models/susas_cnn.pth
+Training for epoch 11
+[0/251]Loss: 1.0350412130355835
+[100/251]Loss: 2.16487717628479
+[200/251]Loss: 1.167738437652588
+Evaluating for SUSAS.
+0/51
+Overall Accuracy: 0.45012468827930174
+Evaluation completed.
+Training for epoch 12
+[0/251]Loss: 1.268061876296997
+[100/251]Loss: 2.686161518096924
+[200/251]Loss: 1.4818120002746582
+Evaluating for SUSAS.
+0/51
+Overall Accuracy: 0.44389027431421446
+Evaluation completed.
+Training for epoch 13
+[0/251]Loss: 1.5166680812835693

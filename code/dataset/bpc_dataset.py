@@ -11,7 +11,7 @@ from feature_extractor.teo import TeoFeatureExtractorAverage
 from feature_extractor.gemaps import GemapsFeatureExtractorAverage
 
 class BpcDataset(Dataset):
-    def __init__(self, args, split):
+    def __init__(self, args):
         Dataset.__init__(self)
         self.args = args
         # self.csv_data = open(self.args.bpc_path, 'r')
@@ -28,11 +28,11 @@ class BpcDataset(Dataset):
         #     self.ori_data.append(row)
 
         data_size = len(self.ori_data)
-        train_size = int(self.args.train_test_split * data_size)
-        if split == "train":
-            self.ori_data = self.ori_data[0:train_size]
-        else:
-            self.ori_data = self.ori_data[train_size:]
+        # train_size = int(self.args.train_test_split * data_size)
+        # if split == "train":
+        #     self.ori_data = self.ori_data[0:train_size]
+        # else:
+        #     self.ori_data = self.ori_data[train_size:]
         
         # self.teo_extractor = TeoFeatureExtractorAverage(self.args)
         # self.gemaps_extractor = GemapsFeatureExtractorAverage(self.args)

@@ -1,0 +1,10 @@
+/bin/sh: sox: command not found
+SoX could not be found!
+
+    If you do not have SoX, proceed here:
+     - - - http://sox.sourceforge.net/ - - -
+
+    If you do (or think that you should) have SoX, double-check your
+    path variables.
+    
+slurmstepd: error: *** STEP 3748797.0 ON midway3-0294 CANCELLED AT 2022-03-29T18:14:02 DUE TO TIME LIMIT ***

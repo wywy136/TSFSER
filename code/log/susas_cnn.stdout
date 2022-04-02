@@ -1,0 +1,4 @@
+Using device: cuda
+New model initialized.
+Training for epoch 0
+torch.Size([16, 10, 148, 23])

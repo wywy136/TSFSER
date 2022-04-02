@@ -37,7 +37,8 @@ class GemapsFeatureExtractorAverage:
         return audio_segment
     
     def get_result(self):
-        return np.mean(self.result, axis=0)
+        # return np.mean(self.result, axis=0)
+        return self.result
 
     def __call__(self, filepath, start=None, end=None):
         audio = self.librosa_to_audiosegment(filepath) # convert librosa array to audiosegment

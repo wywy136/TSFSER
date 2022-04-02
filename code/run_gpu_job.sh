@@ -1,14 +1,14 @@
 #!/bin/bash
 
-OUTPUT_DIR="/home/ywang27/slurm_output"
+OUTPUT_DIR="/home/ywang27/TSFSER/code/log"
 if [ ! -d "$OUTPUT_DIR" ]; then
     mkdir "$OUTPUT_DIR"
 fi
 
 srun --account=pi-graziul \
      --job-name="train-ser" \
-     --output="$OUTPUT_DIR/job_5.stdout" \
-     --error="$OUTPUT_DIR/job_5.stderr" \
+     --output="$OUTPUT_DIR/susas_cnn.stdout" \
+     --error="$OUTPUT_DIR/susas_cnn.stderr" \
      --partition=gpu \
      --nodes=1 \
      --gpus=1 \
