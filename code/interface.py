@@ -1,4 +1,5 @@
 from feature_extractor.gemaps_writer import GemapsWriter
+from feature_extractor.teo_writer import TeoWriter
 # from trainer.trainer import Trainer
 from config import Argument
 
@@ -12,12 +13,14 @@ class Interface:
     def __init__(self, args):
         self.args = args
         self.gemaps_writer = GemapsWriter(self.args)
+        self.teo_writer = TeoWriter(self.args)
         # self.trainer = Trainer(self.args)
     
     def __call__(self):
         # generate Gemaps features for BPC
-        self.gemaps_writer()
+        # self.gemaps_writer()
         # self.trainer.train()
+        self.teo_writer()
 
 
 if __name__ == "__main__":
